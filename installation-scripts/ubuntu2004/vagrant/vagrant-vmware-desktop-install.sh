@@ -13,19 +13,16 @@ if [ ! -x ${EXEC_FILE} ]; then
 
         # Install Vagrant
         wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg &&
-            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-        apt-get update &&
+            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list &&
+            apt-get update &&
             apt-get install -y vagrant
-
-        if [ ! -d ${DOWNLOAD_DIR} ]; then
-            mkdir ${DOWNLOAD_DIR}
-        fi
 
         # Install Vagrant VMware Utility
         DOWNLOAD_SOURCE='https://releases.hashicorp.com/vagrant-vmware-utility/1.0.21/vagrant-vmware-utility_1.0.21_linux_amd64.zip'
         DOWNLOAD_FILE='vagrant-vmware-utility_1.0.21_linux_amd64.zip'
 
-        cd ${DOWNLOAD_DIR} &&
+        mkdir -p ${DOWNLOAD_DIR} &&
+            cd ${DOWNLOAD_DIR} &&
             wget ${DOWNLOAD_SOURCE} &&
             mkdir -p /opt/vagrant-vmware-desktop/bin &&
             unzip -d /opt/vagrant-vmware-desktop/bin ${DOWNLOAD_FILE} &&
