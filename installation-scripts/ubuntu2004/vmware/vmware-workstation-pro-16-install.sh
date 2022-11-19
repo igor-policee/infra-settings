@@ -23,9 +23,9 @@ if [ ! -x ${EXEC_FILE} ]; then
         cd ${DOWNLOAD_DIR} &&
             wget "${DOWNLOAD_SOURCE}" &&
             chmod +x ${DOWNLOAD_FILE} &&
-            sh ${DOWNLOAD_FILE} --console --set-setting vmware-workstation serialNumber ${SERIAL_NUMBER}
+            sh ${DOWNLOAD_FILE} --console --set-setting vmware-workstation serialNumber ${SERIAL_NUMBER} &&
+            apt-get install -y ubuntu-desktop
 
-        apt-get install -y ubuntu-desktop
     else
         echo 'The instruction must be executed from the root user'
     fi
