@@ -3,7 +3,7 @@
 # Script for Installing Nexus Repository
 
 APP_NAME='nexus'
-EXEC_FILE='/opt/nexus'
+EXEC_FILE='/opt/nexus/bin/nexus'
 
 if [ ! -x ${EXEC_FILE} ]; then
     WHOAMI=$(whoami)
