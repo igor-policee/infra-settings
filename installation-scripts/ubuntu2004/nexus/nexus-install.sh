@@ -5,13 +5,6 @@
 APP_NAME='nexus'
 EXEC_FILE='/opt/nexus'
 
-#! /bin/bash
-
-# Script for Installing GitLab Community Edition
-
-APP_NAME='gitlab-ce'
-EXEC_FILE='/opt/gitlab/bin/gitlab-ctl'
-
 if [ ! -x ${EXEC_FILE} ]; then
     WHOAMI=$(whoami)
 
