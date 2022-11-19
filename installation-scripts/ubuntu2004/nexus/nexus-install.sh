@@ -15,7 +15,7 @@ if [ ! -x ${EXEC_FILE} ]; then
             cd /opt &&
             wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz &&
             tar -zxvf latest-unix.tar.gz &&
-            mv /opt/nexus-3.30.1-01 /opt/nexus
+            mv /opt/nexus-* /opt/nexus
 
     else
 
