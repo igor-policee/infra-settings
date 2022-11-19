@@ -10,7 +10,7 @@ if [ ! -x ${EXEC_FILE} ]; then
 
     if [ "${WHOAMI}" == 'root' ]; then
         # Install OpenJDK 1.8 on Ubuntu 20.04 LTS
-        apt install openjdk-8-jre-headless &&
+        apt install -y openjdk-8-jre-headless &&
             mkdir -p /opt &&
             cd /opt &&
             wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz &&
