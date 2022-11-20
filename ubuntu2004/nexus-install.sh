@@ -25,7 +25,24 @@ if [ ! -x ${EXEC_FILE} ]; then
             # Set the proper ownership of the nexus directory
             chown -R nexus: /opt/nexus &&
             # Add user configuration in /opt/nexus/bin/nexus.rc
-            sed -i 's/#run_as_user=""/run_as_user="nexus"/' /opt/nexus/bin/nexus.rc
+            sed -i 's/#run_as_user=""/run_as_user="nexus"/' /opt/nexus/bin/nexus.rc &&
+            # Change directory from ../sonatype-work to ./sonatype-work
+            sed -i 's/..\/sonatype-work/.\/sonatype-work/' /opt/nexus/bin/nexus.vmoptions &&
+            # Create Nexus Repository Systemd Service
+            printf "\
+            [Unit]\n\
+            Description=nexus service\n\
+            After=network.target\n\n\
+            [Service]\n\
+            Type=forking\n\
+            LimitNOFILE=65536\n\
+            ExecStart=/opt/nexus/bin/nexus start\n\
+            ExecStop=/opt/nexus/bin/nexus stop\n\
+            User=nexus\n\
+            Restart=on-abort\n\n\
+            [Install]\n\
+            WantedBy=multi-user.target\n\
+            " >/etc/systemd/system/nexus.service
 
     else
 
