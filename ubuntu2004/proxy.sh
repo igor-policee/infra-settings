@@ -14,7 +14,6 @@ if [ ${#} -eq 1 ]; then
         echo "Acquire::http::Proxy \"$(echo ${PROXY_URL})\";" >>/etc/apt/apt.conf
         echo "Acquire::https::Proxy \"$(echo ${PROXY_URL})\";" >>/etc/apt/apt.conf
     elif [ ${STATE} == 'off' ]; then
-        PROXY_URL=""
         sed -i '/http_proxy/d' /etc/environment
         sed -i '/https_proxy/d' /etc/environment
         sed -i '/dns_proxy/d' /etc/environment
