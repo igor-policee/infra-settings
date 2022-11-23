@@ -29,20 +29,7 @@ if [ ! -x ${EXEC_FILE} ]; then
             # Change directory from ../sonatype-work to ./sonatype-work
             sed -i 's/..\/sonatype-work/.\/sonatype-work/' /opt/nexus/bin/nexus.vmoptions &&
             # Create Nexus Repository Systemd Service
-            printf "\
-            [Unit]\n\
-            Description=nexus service\n\
-            After=network.target\n\n\
-            [Service]\n\
-            Type=forking\n\
-            LimitNOFILE=65536\n\
-            ExecStart=/opt/nexus/bin/nexus start\n\
-            ExecStop=/opt/nexus/bin/nexus stop\n\
-            User=nexus\n\
-            Restart=on-abort\n\n\
-            [Install]\n\
-            WantedBy=multi-user.target\n\
-            " >/etc/systemd/system/nexus.service
+            cp ./nexus.service /etc/systemd/system/nexus.service
 
     else
 
