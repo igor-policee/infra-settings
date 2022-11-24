@@ -40,4 +40,6 @@ if [[ ${#} -eq 1 ]]; then
 
 else
     echo 'Invalid number of arguments. Possible quantity: 1'
+    exit 1
+
 fi
